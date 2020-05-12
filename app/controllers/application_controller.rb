@@ -9,5 +9,21 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    "home page"
+  end
+
+  get "/articles" do
+    erb :index
+  end
+
+  get "/articles/new" do
+    erb :new
+  end
+
+  post "/articles" do
+    title = params["title"]
+    content = params["content"]
+    article1 = Article.create(title: title, content: content)
+    redirect "/articles"
   end
 end
